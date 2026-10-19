@@ -1,0 +1,17 @@
+# WhatsApp & Puppeteer session data (SENSITIVE - keeps your WhatsApp login private!)
+chrome_session/
+
+# Dependencies
+node_modules/
+
+# Cloudflare tunnel binary
+cloudflared.exe
+
+# State & test data
+conversations.json
+last_sent_success.png
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

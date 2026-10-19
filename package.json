@@ -1,0 +1,16 @@
+{
+  "name": "agent_one",
+  "version": "1.0.0",
+  "description": "A simple service request system that allows users to request services via a website, which then triggers WhatsApp notifications using Chrome.exe and WhatsApp Web.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "puppeteer-core": "^25.14.0"
+  }
+}

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Services Portal</title>
+    <meta name="description" content="Book trusted home services instantly via WhatsApp.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 24px 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ── Content Body ── */
+        .content {
+            padding: 22px 22px 24px 22px;
+        }
+
+        .section-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        /* ── Services Grid ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .service-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 13px 4px;
+            min-height: 76px;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+            user-select: none;
+        }
+
+        .service-btn:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .service-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-color: transparent;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .service-icon {
+            font-size: 26px;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .service-btn:hover .service-icon {
+            transform: scale(1.08);
+        }
+
+        .service-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #334155;
+            text-align: center;
+            line-height: 1.25;
+            transition: color 0.2s ease;
+        }
+
+        .service-btn.active .service-name {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* ── Phone Input Section ── */
+        .phone-section {
+            margin-bottom: 20px;
+        }
+
+        .phone-input-group {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            background: #ffffff;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .phone-input-group:focus-within {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .country-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 14px;
+            background: #f8fafc;
+            border-right: 1.5px solid #e2e8f0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            user-select: none;
+        }
+
+        .country-flag {
+            font-size: 16px;
+        }
+
+        input[type="tel"] {
+            flex: 1;
+            padding: 14px 16px;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1e293b;
+            letter-spacing: 0.5px;
+            background: transparent;
+        }
+
+        input[type="tel"]::placeholder {
+            color: #94a3b8;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+
+        .phone-hint {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* ── Submit Button ── */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ── Status Message Box ── */
+        .status-box {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            line-height: 1.4;
+        }
+
+        .status-box.success {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .status-box.error {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .status-box.info {
+            background-color: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* ── Responsive adjustments ── */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .container {
+                border-radius: 16px;
+            }
+
+            .header {
+                padding: 24px 18px;
+            }
+
+            .header h1 {
+                font-size: 21px;
+            }
+
+            .content {
+                padding: 20px 16px 22px 16px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .service-btn {
+                padding: 12px 4px;
+                min-height: 76px;
+            }
+
+            .service-icon {
+                font-size: 22px;
+            }
+
+            .service-name {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Home Services</h1>
+            <p>Select a service and enter your phone number to get started on WhatsApp</p>
+        </div>
+
+        <div class="content">
+            <!-- Services Section -->
+            <label class="section-label">Select Service</label>
+            <div class="services-grid">
+                <button type="button" class="service-btn" data-service="Home Appliances">
+                    <span class="service-icon">🏠</span>
+                    <span class="service-name">Appliances</span>
+                </button>
+                <button type="button" class="service-btn" data-service="House Cleaning">
+                    <span class="service-icon">🧹</span>
+                    <span class="service-name">Cleaning</span>
+                </button>
+                <button type="button" class="service-btn" data-service="Electrical Repair">
+                    <span class="service-icon">⚡</span>
+                    <span class="service-name">Electrician</span>
+                </button>
+                <button type="button" class="service-btn" data-service="Plumbing / Pipe Repair">
+                    <span class="service-icon">🔧</span>
+                    <span class="service-name">Plumbing</span>
+                </button>
+                <button type="button" class="service-btn" data-service="Carpenter Services">
+                    <span class="service-icon">🪚</span>
+                    <span class="service-name">Carpenter</span>
+                </button>
+                <button type="button" class="service-btn" data-service="Home Cook / Chef">
+                    <span class="service-icon">🍳</span>
+                    <span class="service-name">Cook &amp; Chef</span>
+                </button>
+                <button type="button" class="service-btn" data-service="House Painting">
+                    <span class="service-icon">🎨</span>
+                    <span class="service-name">Painting</span>
+                </button>
+                <button type="button" class="service-btn" data-service="Pest Control">
+                    <span class="service-icon">🐜</span>
+                    <span class="service-name">Pest Control</span>
+                </button>
+                <button type="button" class="service-btn" data-service="RO Water Purifier">
+                    <span class="service-icon">💧</span>
+                    <span class="service-name">Water Purifier</span>
+                </button>
+            </div>
+
+            <!-- Phone Section -->
+            <div class="phone-section">
+                <label for="phoneNumber" class="section-label">Mobile Number</label>
+                <div class="phone-input-group">
+                    <div class="country-badge">
+                        <span class="country-flag">🇮🇳</span>
+                        <span>+91</span>
+                    </div>
+                    <input 
+                        type="tel" 
+                        id="phoneNumber" 
+                        placeholder="98XXXXXXXX" 
+                        maxlength="10" 
+                        inputmode="numeric"
+                        autocomplete="tel"
+                    >
+                </div>
+                <div class="phone-hint">Enter your 10-digit Indian mobile number</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="submit-btn" id="submitBtn">Request Service</button>
+
+            <!-- Status Box -->
+            <div class="status-box" id="statusBox"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceButtons = document.querySelectorAll('.service-btn');
+            const phoneInput = document.getElementById('phoneNumber');
+            const submitBtn = document.getElementById('submitBtn');
+            const statusBox = document.getElementById('statusBox');
+
+            let selectedService = null;
+
+            // Restrict input to digits only & maximum 10 digits
+            phoneInput.addEventListener('input', () => {
+                phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+            });
+
+            // Service selection
+            serviceButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    serviceButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedService = button.getAttribute('data-service');
+                });
+            });
+
+            // Status message helper
+            function showStatus(message, type) {
+                statusBox.textContent = message;
+                statusBox.className = `status-box ${type}`;
+                statusBox.style.display = 'block';
+            }
+
+            // Submit handler
+            function handleSubmit() {
+                const rawNumber = phoneInput.value.replace(/\D/g, '');
+
+                if (!selectedService) {
+                    showStatus('Please select a service from above', 'error');
+                    return;
+                }
+
+                if (rawNumber.length !== 10) {
+                    showStatus('Please enter a valid 10-digit mobile number', 'error');
+                    phoneInput.focus();
+                    return;
+                }
+
+                if (!/^[6-9]/.test(rawNumber)) {
+                    showStatus('Indian mobile numbers must start with 6, 7, 8, or 9', 'error');
+                    phoneInput.focus();
+                    return;
+                }
+
+                const fullPhone = `+91${rawNumber}`;
+
+                // Set loading state
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending Request...';
+                showStatus('Connecting to WhatsApp assistant...', 'info');
+
+                const sendEndpoint = window.location.protocol.startsWith('http') ? '/send' : 'http://localhost:8786/send';
+
+                fetch(sendEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        phone: fullPhone,
+                        service: selectedService
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errData => {
+                            throw new Error(errData.message || 'Server error occurred');
+                        });
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    showStatus('✅ Request sent successfully! Check your WhatsApp.', 'success');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Request Service';
+
+                    // Reset form after 4 seconds
+                    setTimeout(() => {
+                        serviceButtons.forEach(btn => btn.classList.remove('active'));
+                        phoneInput.value = '';
+                        selectedService = null;
+                        statusBox.style.display = 'none';
+                        phoneInput.focus();
+                    }, 4000);
+                })
+                .catch(err => {
+                    showStatus(err.message || 'Unable to connect to service server. Please make sure the server is running.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Request Service';
+                });
+            }
+
+            submitBtn.addEventListener('click', handleSubmit);
+
+            phoneInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleSubmit();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

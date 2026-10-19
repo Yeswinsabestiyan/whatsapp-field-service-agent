@@ -1,0 +1,38 @@
++--------------------------------------------------------------------------------------------------+
+|                                    1. FRONTEND: WEBSITE PORTAL                                   |
+|                                                                                                  |
+|   Select a Service:                                                                              |
+|   [🧹 House Cleaning]   [🍳 Home Cook / Chef]     [⚡ Electrical Repair]                         |
+|   [🎨 House Painting]   [🪚 Carpenter Services]  [🔧 Plumbing / Pipe Repair]                    |
+|                                                                                                  |
+|   Input Field: [ Enter Phone Number: +91 98XXXXXXXX ]                                            |
+|   Action:      [ Click: "Request Help" ]                                                         |
++-------------------------------------------------+------------------------------------------------+
+                                                  |
+                                                  | HTTP POST (Service Name + Customer Phone)
+                                                  v
++--------------------------------------------------------------------------------------------------+
+|                              2. LOCAL RUNTIME: POWERSHELL (.EXE SERVER)                          |
+|                                                                                                  |
+|   - Endpoint: http://localhost:8786/send                                                         |
+|   - Reads incoming payload: { phone: "91...", service: "House Cleaning" }                       |
+|   - Injects request into active WhatsApp Linked Device session                                   |
++-------------------------------------------------+------------------------------------------------+
+                                                  |
+                                                  | WebSocket / WhatsApp Web Protocol
+                                                  v
++--------------------------------------------------------------------------------------------------+
+|                                  3. CUSTOMER'S WHATSAPP INBOX                                    |
+|                                                                                                  |
+|   Automated Opening Ping:                                                                        |
+|   "Hi! We received your request for [House Cleaning] from our website."                          |
++-------------------------------------------------+------------------------------------------------+
+                                                  |
+                                                  | Customer Replies or Presses Trigger Key
+                                                  v
++--------------------------------------------------------------------------------------------------+
+|                                4. AGENT TAKES OVER CONVERSATION                                  |
+|                                                                                                  |
+|   - PowerShell server catches incoming customer message                                          |
+|   - Routes context to Agent Engine (handles pricing, scope of work, date/time, and address)      |
++--------------------------------------------------------------------------------------------------+
